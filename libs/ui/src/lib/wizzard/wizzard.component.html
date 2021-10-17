@@ -1,0 +1,27 @@
+<ng-container *ngIf="stepWizard$ | async as stepWizard">
+  <ui-stepper
+    [initialIndex]="inititalStepIndex"
+    [activeIndex]="stepWizard.currentStepIndex"
+    [items]="stepWizard.wizardSteps"
+  >
+  </ui-stepper>
+  <div style="padding: 5em 0;">
+    <router-outlet></router-outlet>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <ui-button
+      text="Previous"
+      (buttonClick)="handlePreviousStep()"
+      [disabled]="stepWizard.isFirstStep"
+      [icon]="icons.Left"
+      [iconPosition]="iconPosition.Left"
+    ></ui-button>
+    <ui-button
+      text="Next"
+      (buttonClick)="handleNextStep()"
+      [disabled]="stepWizard.isLastStep"
+      [icon]="icons.Right"
+      [iconPosition]="iconPosition.Right"
+    ></ui-button>
+  </div>
+</ng-container>
