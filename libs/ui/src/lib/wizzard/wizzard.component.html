@@ -5,23 +5,33 @@
     [items]="stepWizard.wizardSteps"
   >
   </ui-stepper>
-  <div style="padding: 5em 0;">
+  <div style="padding: 2em 0;">
     <router-outlet></router-outlet>
   </div>
-  <div fxLayout="row" fxLayoutAlign="space-between">
-    <ui-button
-      text="Previous"
-      (buttonClick)="handlePreviousStep()"
-      [disabled]="stepWizard.isFirstStep"
-      [icon]="icons.Left"
-      [iconPosition]="iconPosition.Left"
-    ></ui-button>
-    <ui-button
-      text="Next"
-      (buttonClick)="handleNextStep()"
-      [disabled]="stepWizard.isLastStep"
-      [icon]="icons.Right"
-      [iconPosition]="iconPosition.Right"
-    ></ui-button>
-  </div>
+  <ng-container
+    [ngTemplateOutlet]="wizzardStepButton ?? defaultButtons"
+    [ngTemplateOutletContext]="{
+      $implicit: stepWizard,
+      handleNextStep: handleNextStep.bind(this),
+      handlePreviousStep: handlePreviousStep.bind(this)
+    }"
+  ></ng-container>
+  <ng-template #defaultButtons>
+    <div fxLayout="row" fxLayoutAlign="space-between">
+      <ui-button
+        text="Previous"
+        (buttonClick)="handlePreviousStep()"
+        [disabled]="stepWizard.isFirstStep"
+        [icon]="icons.Left"
+        [iconPosition]="iconPosition.Left"
+      ></ui-button>
+      <ui-button
+        text="Next"
+        (buttonClick)="handleNextStep()"
+        [disabled]="stepWizard.isLastStep"
+        [icon]="icons.Right"
+        [iconPosition]="iconPosition.Right"
+      ></ui-button>
+    </div>
+  </ng-template>
 </ng-container>

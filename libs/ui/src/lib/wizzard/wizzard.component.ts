@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core'
 import { Route, Router } from '@angular/router'
 import { MenuItem } from 'primeng/api'
 import { Observable } from 'rxjs'
@@ -26,7 +26,8 @@ export interface StepWizard {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WizzardComponent implements OnInit {
-  @Input() steps: WizzardStep[] = []
+  @ContentChild('wizzardStepButton', { static: false }) wizzardStepButton!: TemplateRef<any>
+  @Input() wizzardSteps: WizzardStep[] = []
   @Input() inititalStepIndex = 0
   stepWizard$!: Observable<StepWizard>
   icons = Icons
@@ -38,11 +39,13 @@ export class WizzardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.router.config = this.wizzardSteps
     this.#navigate(this.inititalStepIndex)
+
     this.stepWizard$ = this.wizzardService.stepWizzard$.pipe(
       tap(({ currentStepIndex }) => this.#navigate(currentStepIndex))
     )
-    this.wizzardService.init(this.steps, this.inititalStepIndex)
+    this.wizzardService.init(this.wizzardSteps, this.inititalStepIndex)
   }
 
   handlePreviousStep(): void {
@@ -54,6 +57,7 @@ export class WizzardComponent implements OnInit {
   }
 
   #navigate(currentStepIndex: StepWizard['currentStepIndex']) {
-    this.router.navigateByUrl(this.steps[currentStepIndex].path ?? '')
+    const { path = '' } = this.wizzardSteps[currentStepIndex] ?? {}
+    this.router.navigateByUrl(path)
   }
 }

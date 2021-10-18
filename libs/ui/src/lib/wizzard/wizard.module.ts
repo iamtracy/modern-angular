@@ -4,7 +4,6 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { RouterModule } from '@angular/router'
 import { ButtonModule } from '../button/button.module'
 import { StepperModule } from '../stepper/stepper.module'
-import { WizzardService } from './wizard.service'
 import { WizzardComponent } from './wizzard.component'
 
 @NgModule({
@@ -16,7 +15,6 @@ import { WizzardComponent } from './wizzard.component'
     FlexLayoutModule,
     RouterModule.forChild([]),
   ],
-  providers: [WizzardService],
 	exports: [WizzardComponent],
 })
-export class WiizzardModule {}
+export class WizzardModule {}

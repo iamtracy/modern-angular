@@ -3,13 +3,22 @@ import { IconPosition, Icons } from '../icons/icons'
 
 export type ButtonEvent = PointerEvent | MouseEvent
 
+export interface Button {
+  text: string,
+  disabled?: boolean,
+  linkButton?: boolean,
+  icon?: Icons,
+  iconPosition?: IconPosition,
+  buttonClick?: EventEmitter<any>
+}
+
 @Component({
   selector: 'ui-button',
   template: `
     <ng-container *ngIf="linkButton; else standardButton">
       <p-button
         [label]="text"
-        [disabled]="disabled"
+        [disabled]="disabled ?? false"
         styleClass="p-button-link"
         (onClick)="handlButtonClick($event)"
       ></p-button>
@@ -20,19 +29,19 @@ export type ButtonEvent = PointerEvent | MouseEvent
         [label]="text"
         [disabled]="disabled"
         (click)="handlButtonClick($event)"
-        [icon]="icon"
-        [iconPos]="iconPosition"
+        [icon]="icon ?? ''"
+        [iconPos]="iconPosition ?? 'left'"
       ></button>
     </ng-template>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent {
-  @Input() text = ''
-  @Input() disabled = false
-  @Input() linkButton = false
-  @Input() icon!: Icons
-  @Input() iconPosition!: IconPosition
+  @Input() text: Button['text'] = ''
+  @Input() disabled: Button['disabled'] = false
+  @Input() linkButton: Button['linkButton'] = false
+  @Input() icon!: Button['icon']
+  @Input() iconPosition: Button['iconPosition'] = IconPosition.Left
   @Output() buttonClick = new EventEmitter<ButtonEvent>()
 
   handlButtonClick(event: ButtonEvent) {

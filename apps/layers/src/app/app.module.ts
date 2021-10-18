@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
+import { FlexModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
+import { ButtonModule, WizzardModule } from '@modern/ui';
+import { AppComponent, ModernOneButtonComponent } from './app.component';
 
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, RouterModule.forRoot([])],
+  declarations: [AppComponent, ModernOneButtonComponent],
+  imports: [
+    BrowserModule,
+    WizzardModule,
+    ButtonModule,
+    FlexModule,
+    RouterModule.forRoot([]),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

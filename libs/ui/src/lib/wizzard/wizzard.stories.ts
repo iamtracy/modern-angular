@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
-import { WiizzardModule } from './wizard.module';
+import { WizzardModule } from './wizard.module';
 import { WizzardComponent, WizzardStep } from "./wizzard.component";
 
 @Component({
@@ -47,10 +46,9 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [
-        WiizzardModule,
+        WizzardModule,
         FlexLayoutModule,
         RouterTestingModule,
-        RouterModule.forChild(routes)
       ],
     }),
   ]
@@ -59,6 +57,6 @@ export default {
 export const withSteps: Story<WizzardComponent> = () => ({
   props: {
     inititalStepIndex: 1,
-    steps: routes
+    wizzardSteps: routes
   },
 })
