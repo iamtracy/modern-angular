@@ -1,7 +1,7 @@
 <ng-container *ngIf="stepWizard$ | async as stepWizard">
   <ui-stepper
-    [initialIndex]="inititalStepIndex"
     [activeIndex]="stepWizard.currentStepIndex"
+    [initialIndex]="inititalStepIndex"
     [items]="stepWizard.wizardSteps"
   >
   </ui-stepper>
@@ -9,28 +9,32 @@
     <router-outlet></router-outlet>
   </div>
   <ng-container
-    [ngTemplateOutlet]="wizzardStepButton ?? defaultButtons"
+    [ngTemplateOutlet]="wizardButtons ?? defaultButtons"
     [ngTemplateOutletContext]="{
-      $implicit: stepWizard,
-      handleNextStep: handleNextStep.bind(this),
-      handlePreviousStep: handlePreviousStep.bind(this)
+      $implicit: {
+        currentStepIndex: stepWizard.currentStepIndex,
+        handleNextStep,
+        handlePreviousStep,
+        isFirstStep: stepWizard.isFirstStep,
+        isLastStep: stepWizard.isLastStep
+      }
     }"
   ></ng-container>
   <ng-template #defaultButtons>
-    <div fxLayout="row" fxLayoutAlign="space-between">
+    <div fxLayoutAlign="space-between">
       <ui-button
-        text="Previous"
-        (buttonClick)="handlePreviousStep()"
+        (clicked)="handlePreviousStep()"
         [disabled]="stepWizard.isFirstStep"
         [icon]="icons.Left"
         [iconPosition]="iconPosition.Left"
+        text="Previous"
       ></ui-button>
       <ui-button
-        text="Next"
-        (buttonClick)="handleNextStep()"
+        (clicked)="handleNextStep()"
         [disabled]="stepWizard.isLastStep"
         [icon]="icons.Right"
         [iconPosition]="iconPosition.Right"
+        text="Next"
       ></ui-button>
     </div>
   </ng-template>

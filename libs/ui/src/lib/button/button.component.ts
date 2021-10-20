@@ -42,9 +42,9 @@ export class ButtonComponent {
   @Input() linkButton: Button['linkButton'] = false
   @Input() icon!: Button['icon']
   @Input() iconPosition: Button['iconPosition'] = IconPosition.Left
-  @Output() buttonClick = new EventEmitter<ButtonEvent>()
+  @Output() clicked = new EventEmitter<ButtonEvent>()
 
   handlButtonClick(event: ButtonEvent) {
-    this.buttonClick.emit(event)
+    this.clicked.emit(event)
   }
 }

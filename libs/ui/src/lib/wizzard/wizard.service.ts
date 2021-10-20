@@ -1,52 +1,59 @@
 import { Injectable } from "@angular/core";
 import { pascalCase } from "pascal-case";
 import { BehaviorSubject } from "rxjs";
-import { StepWizard, WizzardStep } from "./wizzard.component";
+import { StepWizard, WizardStep } from "./wizard.component";
 
-@Injectable({ providedIn: 'root' })
-export class WizzardService {
-  #stepWizzard = new BehaviorSubject<StepWizard>({
+@Injectable()
+export class WizardService {
+  #stepWizard = new BehaviorSubject<StepWizard>({
     currentStepIndex: 0,
     isFirstStep: true,
     isLastStep: true,
     wizardSteps: [],
   })
-  stepWizzard$ = this.#stepWizzard.asObservable()
+  stepWizard$ = this.#stepWizard.asObservable()
 
-  init(steps: WizzardStep[], initialIndex: number): void {
-    const items = steps.map(item => ({
-      ...item,
-      label: item.label ?? pascalCase(item.path ?? '').replace('_', ' ')
-    }))
-    this.#stepWizzard.next({
-      currentStepIndex: initialIndex,
-      wizardSteps: items,
-      isFirstStep: initialIndex === 0,
-      isLastStep: initialIndex === items.length,
+  init(wizardSteps: WizardStep[], inititalStepIndex: number): void {
+    this.#stepWizard.next({
+      currentStepIndex: inititalStepIndex,
+      wizardSteps: wizardSteps.map(wizardStep => ({
+        ...wizardStep,
+        label: wizardStep.label ?? pascalCase(wizardStep.path ?? '').replace(/([A-Z])/g, ' $1'),
+      })),
+      isFirstStep: this.#isFirstStep(inititalStepIndex),
+      isLastStep: this.#isLastStep(inititalStepIndex),
     })
   }
 
   handlePreviousStep(): void {
-    const newStepIndex = this.#wizard.currentStepIndex - 1
-    this.#stepWizzard.next({
+    const currentStepIndex = this.#wizard.currentStepIndex - 1
+    this.#stepWizard.next({
       ...this.#wizard,
-      currentStepIndex: newStepIndex,
-      isFirstStep: newStepIndex === 0,
-      isLastStep: newStepIndex === this.#wizard.wizardSteps.length - 1,
+      currentStepIndex,
+      isFirstStep: this.#isFirstStep(currentStepIndex),
+      isLastStep: this.#isLastStep(currentStepIndex),
     })
   }
 
   handleNextStep(): void {
-    const newStepIndex = this.#wizard.currentStepIndex + 1
-    this.#stepWizzard.next({
+    const currentStepIndex = this.#wizard.currentStepIndex + 1
+    this.#stepWizard.next({
       ...this.#wizard,
-      currentStepIndex: newStepIndex,
-      isFirstStep: newStepIndex === 0,
-      isLastStep: newStepIndex === this.#wizard.wizardSteps.length - 1,
+      currentStepIndex,
+      isFirstStep: this.#isFirstStep(currentStepIndex),
+      isLastStep: this.#isLastStep(currentStepIndex),
     })
   }
 
+  #isFirstStep(currentStepIndex: number): boolean {
+    return currentStepIndex === 0
+  }
+
+  #isLastStep(currentStepIndex: number): boolean {
+    return currentStepIndex === this.#wizard.wizardSteps.length - 1
+  }
+
   get #wizard(): StepWizard {
-    return this.#stepWizzard.value
+    return this.#stepWizard.value
   }
 }

@@ -2,15 +2,16 @@ import { NgModule } from '@angular/core';
 import { FlexModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { ButtonModule, WizzardModule } from '@modern/ui';
-import { AppComponent, ModernOneButtonComponent } from './app.component';
+import { ButtonModule, WizardModule } from '@modern/ui';
+import { AppComponent } from './app.component';
+import { StepWizardComponent } from './pages/step-wizard.component';
 
 
 @NgModule({
-  declarations: [AppComponent, ModernOneButtonComponent],
+  declarations: [AppComponent, StepWizardComponent],
   imports: [
     BrowserModule,
-    WizzardModule,
+    WizardModule,
     ButtonModule,
     FlexModule,
     RouterModule.forRoot([]),

@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
-import { WizzardModule } from './wizard.module';
-import { WizzardComponent, WizzardStep } from "./wizzard.component";
+import { WizardComponent, WizardStep } from "./wizard.component";
+import { WizardModule } from './wizard.module';
 
 @Component({
   selector: 'ui-one',
@@ -33,7 +33,7 @@ class ThreeComponent {}
 })
 class FourComponent {}
 
-const routes: WizzardStep[] = [
+const routes: WizardStep[] = [
   { component: OneComponent, path: 'step-1' },
   { component: TwoComponent, path: 'step-2' },
   { component: ThreeComponent, path: 'step-3'  },
@@ -42,19 +42,19 @@ const routes: WizzardStep[] = [
 
 export default {
   title: 'Components/Wizzard',
-  component: WizzardComponent,
+  component: WizardComponent,
   decorators: [
     moduleMetadata({
       imports: [
-        WizzardModule,
+        WizardModule,
         FlexLayoutModule,
         RouterTestingModule,
       ],
     }),
   ]
-} as Meta<WizzardComponent>
+} as Meta<WizardComponent>
 
-export const withSteps: Story<WizzardComponent> = () => ({
+export const withSteps: Story<WizardComponent> = () => ({
   props: {
     inititalStepIndex: 1,
     wizzardSteps: routes
