@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterTestingModule } from '@angular/router/testing';
+import { WizardModule, WizardStep } from '@modern/ui';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
-import { WizardComponent, WizardStep } from "./wizard.component";
-import { WizardModule } from './wizard.module';
+import { WizardComponent } from "./wizard.component";
 
 @Component({
   selector: 'ui-one',

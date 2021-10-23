@@ -1,6 +1,6 @@
+import { WizardStep } from '@modern/ui'
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator'
 import { firstValueFrom } from 'rxjs'
-import { WizardStep } from './wizard.component'
 import { WizardService } from './wizard.service'
 
 describe('WizardService', () => {

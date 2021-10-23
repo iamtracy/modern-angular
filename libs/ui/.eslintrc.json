@@ -1,5 +1,5 @@
 {
-  "extends": ["../../.eslintrc.json", "prettier"],
+  "extends": ["../../.eslintrc.json"],
   "ignorePatterns": ["!**/*", "**/*.test.ts"],
   "overrides": [
     {

@@ -1,13 +1,14 @@
-import { RouterTestingModule } from '@angular/router/testing';
-import { createComponentFactory, mockProvider, Spectator } from '@ngneat/spectator';
-import { BehaviorSubject } from 'rxjs';
-import { ButtonComponent } from '../button/button.component';
-import { IconPosition, Icons } from '../icons/icons';
-import { StepWizard, WizardComponent, WizardStep } from './wizard.component';
-import { WizardService } from './wizard.service';
+import { RouterTestingModule } from '@angular/router/testing'
+import { StepWizard, WizardStep } from '@modern/ui'
+import { createComponentFactory, mockProvider, Spectator } from '@ngneat/spectator'
+import { BehaviorSubject } from 'rxjs'
+import { ButtonComponent } from '../button/button.component'
+import { IconPosition, Icons } from '../icons/icons'
+import { WizardComponent } from './wizard.component'
+import { WizardService } from './wizard.service'
 
 describe('WizardComponent', () => {
-  let spectator: Spectator<WizardComponent>;
+  let spectator: Spectator<WizardComponent>
   const wizardSteps: WizardStep[] = [
     { path: 'one' },
     { path: 'two' },

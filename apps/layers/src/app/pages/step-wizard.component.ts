@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { WizardStep } from 'libs/ui/src/lib/wizzard/wizard.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { WizardStep } from '@modern/ui'
 
 @Component({
   selector: 'modern-one',

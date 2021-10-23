@@ -91,7 +91,8 @@
           "outputs": ["coverage/apps/layers"],
           "options": {
             "jestConfig": "apps/layers/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "codeCoverage": true
           }
         }
       }
@@ -134,7 +135,8 @@
           "outputs": ["coverage/libs/ui"],
           "options": {
             "jestConfig": "libs/ui/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": false,
+            "codeCoverage": true
           }
         },
         "lint": {

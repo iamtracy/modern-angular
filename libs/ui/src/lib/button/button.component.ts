@@ -1,16 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core'
-import { IconPosition, Icons } from '../icons/icons'
-
-export type ButtonEvent = PointerEvent | MouseEvent
-
-export interface Button {
-  text: string,
-  disabled?: boolean,
-  linkButton?: boolean,
-  icon?: Icons,
-  iconPosition?: IconPosition,
-  buttonClick?: EventEmitter<any>
-}
+import { Button, ButtonEvent, IconPosition } from '@modern/ui'
 
 @Component({
   selector: 'ui-button',

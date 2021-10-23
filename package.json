@@ -8,7 +8,7 @@
     "start": "nx serve",
     "start:ui": "ng run ui:storybook",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test -- --code-coverage"
   },
   "private": true,
   "dependencies": {
