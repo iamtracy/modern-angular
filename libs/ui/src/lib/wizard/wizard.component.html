@@ -21,20 +21,22 @@
     }"
   ></ng-container>
   <ng-template #defaultButtons>
-    <div fxLayoutAlign="space-between">
+    <div class="default-buttons" fxLayoutAlign="space-between">
       <ui-button
+        class="previous"
         (clicked)="handlePreviousStep()"
         [disabled]="stepWizard.isFirstStep"
         [icon]="icons.Left"
         [iconPosition]="iconPosition.Left"
-        text="Previous"
+        [text]="previousButtonText"
       ></ui-button>
       <ui-button
+        class="next"
         (clicked)="handleNextStep()"
         [disabled]="stepWizard.isLastStep"
         [icon]="icons.Right"
         [iconPosition]="iconPosition.Right"
-        text="Next"
+        [text]="nextButtonText"
       ></ui-button>
     </div>
   </ng-template>

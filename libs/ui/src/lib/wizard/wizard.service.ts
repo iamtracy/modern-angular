@@ -13,12 +13,12 @@ export class WizardService {
   })
   stepWizard$ = this.#stepWizard.asObservable()
 
-  init(wizardSteps: WizardStep[], inititalStepIndex: number): void {
+  init(wizardSteps: WizardStep[], inititalStepIndex: number = 0): void {
     this.#stepWizard.next({
       currentStepIndex: inititalStepIndex,
       wizardSteps: wizardSteps.map(wizardStep => ({
         ...wizardStep,
-        label: wizardStep.label ?? pascalCase(wizardStep.path ?? '').replace(/([A-Z])/g, ' $1'),
+        label: wizardStep.label ?? pascalCase(wizardStep.path).replace(/([A-Z])/g, '$1'),
       })),
       isFirstStep: this.#isFirstStep(inititalStepIndex),
       isLastStep: this.#isLastStep(inititalStepIndex),
@@ -30,7 +30,7 @@ export class WizardService {
     this.#stepWizard.next({
       ...this.#wizard,
       currentStepIndex,
-      isFirstStep: this.#isFirstStep(currentStepIndex),
+      isFirstStep:  this.#isFirstStep(currentStepIndex),
       isLastStep: this.#isLastStep(currentStepIndex),
     })
   }

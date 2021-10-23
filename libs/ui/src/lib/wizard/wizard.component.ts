@@ -7,9 +7,11 @@ import { IconPosition, Icons } from '../icons/icons'
 import { WizardService } from './wizard.service'
 
 export interface WizardStep extends
-  Pick<Route, 'component' | 'path'>,
+  Pick<Route, 'component'>,
   Pick<MenuItem, 'label'>
-{ }
+{
+  path: string
+}
 
 export interface StepWizard {
   currentStepIndex: number,
@@ -28,13 +30,15 @@ export class WizardComponent implements OnInit {
   @ContentChild('wizardButtons') wizardButtons!: TemplateRef<any>
   @Input() wizardSteps: WizardStep[] = []
   @Input() inititalStepIndex = 0
+  @Input() previousButtonText = 'Previous'
+  @Input() nextButtonText = 'Next'
   stepWizard$!: Observable<StepWizard>
   icons = Icons
   iconPosition = IconPosition
 
   constructor(
     private router: Router,
-    private wizardService: WizardService,
+    public wizardService: WizardService,
   ) { }
 
   ngOnInit(): void {
@@ -42,7 +46,7 @@ export class WizardComponent implements OnInit {
     this.wizardService.init(this.wizardSteps, this.inititalStepIndex)
     this.stepWizard$ = this.wizardService.stepWizard$.pipe(
       tap(({ currentStepIndex }) => (
-        this.router.navigateByUrl(this.wizardSteps[currentStepIndex]?.path ?? '')
+        this.router.navigateByUrl(this.wizardSteps[currentStepIndex]?.path)
       ))
     )
   }
