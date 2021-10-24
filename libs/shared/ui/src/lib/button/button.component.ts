@@ -18,8 +18,8 @@ import { Button, ButtonEvent, IconPosition } from '@modern/shared/ui'
         [label]="button.text"
         [disabled]="button.disabled"
         (click)="handlButtonClick($event)"
-        [icon]="button.icon"
-        [iconPos]="button.iconPosition"
+        [icon]="button.icon ?? ''"
+        [iconPos]="button.iconPosition ?? 'left'"
       ></button>
     </ng-template>
   `,

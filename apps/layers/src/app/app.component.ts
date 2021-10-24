@@ -2,6 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'modern-root',
-  template: '<modern-step-wizard></modern-step-wizard>',
+  template: '<shared-setup-wizard></shared-setup-wizard>',
 })
 export class AppComponent { }
