@@ -1,11 +1,13 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { WizardStep } from '@modern/shared/ui'
+import { Observable } from 'rxjs'
 import { SetupWizardBasicInfoComponent } from './screens/basic-info.component'
 import { SetupWizardService } from './setup-wizard.service'
 
 export interface SetupWizard {
   firstName?:  string | null | undefined,
   lastName?: string | null | undefined,
+  valid: boolean,
 }
 
 @Component({
@@ -25,7 +27,7 @@ export interface SetupWizard {
           <ui-button
             (clicked)="stepWizard.handleNextStep(); handleNext()"
             [button]="{
-              disabled: stepWizard.isLastStep,
+              disabled: ((disabled$ | async) || stepWizard.isLastStep),
               text: 'Next'
             }"
           >
@@ -43,7 +45,8 @@ export interface SetupWizard {
     }
   `],
 })
-export class SetupWizardComponent {
+export class SetupWizardComponent implements OnInit {
+  disabled$!: Observable<boolean>
   wizardSteps: WizardStep[] = [
     { component: SetupWizardBasicInfoComponent, path: 'step-one', label: 'Basic Info' },
     { path: 'step-two', label: 'Foo' },
@@ -54,6 +57,10 @@ export class SetupWizardComponent {
   constructor(
     public setupWizardService: SetupWizardService
   ) {}
+
+  ngOnInit() {
+    this.disabled$ = this.setupWizardService.disabled$
+  }
 
   handleNext() {
     this.setupWizardService.save()

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { SetupWizard } from '../setup-wizard.component';
 import { SetupWizardService } from '../setup-wizard.service';
 
 @Component({
   selector: 'shared-setup-wizard-basic-info',
-  template: '<ui-form [fields]="fields" (modelChange)="handleOnChange($event)"></ui-form>',
+  template: '<ui-form [fields]="fields" [model]="model" (modelChange)="handleOnChange($event)"></ui-form>',
 })
 export class SetupWizardBasicInfoComponent {
   fields: FormlyFieldConfig[] = [
@@ -26,12 +26,13 @@ export class SetupWizardBasicInfoComponent {
       }
     }
   ]
+  model = this.setupWizardService.value
 
   constructor(
     private setupWizardService: SetupWizardService,
   ) {}
 
-  handleOnChange(basicInfo: Partial<SetupWizard>) {
-    this.setupWizardService.handleOnChange(basicInfo)
+  handleOnChange(formGroup: FormGroup) {
+    this.setupWizardService.handleOnChange(formGroup)
   }
 }

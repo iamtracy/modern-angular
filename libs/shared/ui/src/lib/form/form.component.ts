@@ -6,7 +6,7 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
   selector: 'ui-form',
   template: `
     <form [formGroup]="form" (ngSubmit)="handleOnSubmit()">
-      <formly-form [form]="form" [fields]="fields" (modelChange)="handleOnChange()"></formly-form>
+      <formly-form [form]="form" [fields]="fields" [model]="model" (modelChange)="handleOnChange()"></formly-form>
       <ng-container
         [ngTemplateOutlet]="formButtons"
         [ngTemplateOutletContext]="{ $implicit: form }"
@@ -17,12 +17,13 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 export class FormComponent {
   @ContentChild('formButtons') formButtons!: TemplateRef<unknown>
   @Input() fields: FormlyFieldConfig[] = []
+  @Input() model!: unknown
   @Output() submit = new EventEmitter<unknown>()
-  @Output() modelChange = new EventEmitter()
+  @Output() modelChange = new EventEmitter<FormGroup>()
   form = new FormGroup({});
 
   handleOnChange() {
-    this.modelChange.emit(this.form.value)
+    this.modelChange.emit(this.form)
   }
 
   handleOnSubmit() {

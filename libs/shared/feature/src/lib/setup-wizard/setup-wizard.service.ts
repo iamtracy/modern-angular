@@ -1,18 +1,29 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { FormGroup } from "@angular/forms";
+import { BehaviorSubject, map, Observable } from "rxjs";
 import { SetupWizard } from "./setup-wizard.component";
 
 @Injectable()
 export class SetupWizardService {
-  #valid = false
   #setupWizard = new BehaviorSubject<SetupWizard>({
     firstName: null,
     lastName: null,
+    valid: false,
   })
   setupWizard$ = this.#setupWizard.asObservable()
 
-  handleOnChange(setupWizard: Partial<SetupWizard>): void {
-    this.#setupWizard.next(setupWizard)
+  get disabled$(): Observable<boolean> {
+    return this.setupWizard$.pipe(
+      map(({ valid }) => !valid)
+    )
+  }
+
+  get value(): Partial<SetupWizard> {
+    return this.#setupWizard.value
+  }
+
+  handleOnChange({ valid, value }: FormGroup): void {
+    this.#setupWizard.next({ valid, ...value })
   }
 
   save(): void {
