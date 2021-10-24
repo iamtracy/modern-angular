@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterTestingModule } from '@angular/router/testing';
-import { WizardModule, WizardStep } from '@modern/ui';
+import { WizardModule, WizardStep } from '@modern/shared/ui';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { WizardComponent } from "./wizard.component";
 

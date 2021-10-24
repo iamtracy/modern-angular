@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { EventEmitter, NgModule } from '@angular/core'
-import { IconPosition, Icons } from '@modern/ui'
 import { ButtonModule as NgButtonModule } from 'primeng/button'
+import { IconPosition, Icons } from '../..'
 import { ButtonComponent } from './button.component'
 
 export type ButtonEvent = PointerEvent | MouseEvent

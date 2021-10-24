@@ -1,5 +1,5 @@
 import { RouterTestingModule } from '@angular/router/testing'
-import { StepWizard, WizardStep } from '@modern/ui'
+import { StepWizard, WizardStep } from '@modern/shared/ui'
 import { createComponentFactory, mockProvider, Spectator } from '@ngneat/spectator'
 import { BehaviorSubject } from 'rxjs'
 import { ButtonComponent } from '../button/button.component'

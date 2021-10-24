@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@modern/ui": ["libs/ui/src/index.ts"]
+      "@modern/shared/feature": ["libs/shared/feature/src/index.ts"],
+      "@modern/shared/ui": ["libs/shared/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

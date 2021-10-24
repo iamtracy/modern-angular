@@ -1,5 +1,4 @@
 {
-  "npmScope": "modern",
   "affected": {
     "defaultBase": "master"
   },
@@ -10,13 +9,20 @@
     },
     ".eslintrc.json": "*"
   },
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "@nrwl/nx-cloud",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "NWRlNDdhODEtY2M2OC00ZjAzLTlmZTYtZmRmYmY1ZDA0OGRmfHJlYWQtd3JpdGU="
-      }
+  "npmScope": "modern",
+  "projects": {
+    "layers": {
+      "tags": []
+    },
+    "layers-e2e": {
+      "tags": [],
+      "implicitDependencies": ["layers"]
+    },
+    "shared-feature": {
+      "tags": []
+    },
+    "shared-ui": {
+      "tags": []
     }
   },
   "targetDependencies": {
@@ -27,16 +33,13 @@
       }
     ]
   },
-  "projects": {
-    "layers": {
-      "tags": []
-    },
-    "layers-e2e": {
-      "tags": [],
-      "implicitDependencies": ["layers"]
-    },
-    "ui": {
-      "tags": []
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "NWRlNDdhODEtY2M2OC00ZjAzLTlmZTYtZmRmYmY1ZDA0OGRmfHJlYWQtd3JpdGU="
+      }
     }
   }
 }

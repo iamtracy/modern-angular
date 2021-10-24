@@ -1,4 +1,4 @@
-import { WizardStep } from '@modern/ui'
+import { WizardStep } from '@modern/shared/ui'
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator'
 import { firstValueFrom } from 'rxjs'
 import { WizardService } from './wizard.service'

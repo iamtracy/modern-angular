@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core'
-import { Button, ButtonEvent, IconPosition } from '@modern/ui'
+import { Button, ButtonEvent, IconPosition } from '@modern/shared/ui'
 
 @Component({
   selector: 'ui-button',

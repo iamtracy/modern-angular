@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core'
 import { Router } from '@angular/router'
-import { IconPosition, Icons, StepWizard, WizardStep } from '@modern/ui'
 import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
+import { IconPosition, Icons } from '../..'
+import { StepWizard, WizardStep } from './wizard.module'
 import { WizardService } from './wizard.service'
 
 @Component({

@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { Route, RouterModule } from '@angular/router'
-import { ButtonModule, StepperModule } from '@modern/ui'
 import { MenuItem } from "primeng/api"
+import { ButtonModule, StepperModule } from '../..'
 import { WizardComponent } from './wizard.component'
 import { WizardService } from './wizard.service'
 

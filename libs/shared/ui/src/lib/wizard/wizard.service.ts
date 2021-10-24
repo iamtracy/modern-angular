@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { StepWizard, WizardStep } from "@modern/ui";
+import { StepWizard, WizardStep } from "@modern/shared/ui";
 import { pascalCase } from "pascal-case";
 import { BehaviorSubject } from "rxjs";
 

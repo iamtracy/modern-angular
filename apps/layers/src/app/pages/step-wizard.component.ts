@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { WizardStep } from '@modern/ui'
+import { WizardStep } from '@modern/shared/ui'
 
 @Component({
   selector: 'modern-step-wizard',
