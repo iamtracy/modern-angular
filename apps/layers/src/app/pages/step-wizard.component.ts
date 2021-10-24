@@ -1,30 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { Component } from '@angular/core'
 import { WizardStep } from '@modern/ui'
-
-@Component({
-  selector: 'modern-one',
-  template: 'one',
-  changeDetection: ChangeDetectionStrategy.OnPush
-})
-class OneComponent {}
-@Component({
-  selector: 'modern-two',
-  template: 'two',
-  changeDetection: ChangeDetectionStrategy.OnPush
-})
-class TwoComponent {}
-@Component({
-  selector: 'modern-three',
-  template: 'three',
-  changeDetection: ChangeDetectionStrategy.OnPush
-})
-class ThreeComponent {}
-@Component({
-  selector: 'modern-four',
-  template: 'four',
-  changeDetection: ChangeDetectionStrategy.OnPush
-})
-class FourComponent {}
 
 @Component({
   selector: 'modern-step-wizard',
@@ -52,10 +27,10 @@ class FourComponent {}
 })
 export class StepWizardComponent {
   wizardSteps: WizardStep[] = [
-    { component: OneComponent, path: 'step-one' },
-    { component: TwoComponent, path: 'step-two' },
-    { component: ThreeComponent, path: 'step-three', label: 'Custom Label'  },
-    { component: FourComponent, path: 'step-four'  },
+    { path: 'step-one' },
+    { path: 'step-two' },
+    { path: 'step-three' },
+    { path: 'step-four'  },
   ]
 
   handleSave() {
