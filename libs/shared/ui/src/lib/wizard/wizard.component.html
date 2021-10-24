@@ -25,18 +25,22 @@
       <ui-button
         class="previous"
         (clicked)="handlePreviousStep()"
-        [disabled]="stepWizard.isFirstStep"
-        [icon]="icons.Left"
-        [iconPosition]="iconPosition.Left"
-        [text]="previousButtonText"
+        [button]="{
+          disabled: stepWizard.isFirstStep,
+          icon: icons.Left,
+          iconPosition: iconPosition.Left,
+          text: previousButtonText
+        }"
       ></ui-button>
       <ui-button
         class="next"
         (clicked)="handleNextStep()"
-        [disabled]="stepWizard.isLastStep"
-        [icon]="icons.Right"
-        [iconPosition]="iconPosition.Right"
-        [text]="nextButtonText"
+        [button]="{
+          disabled: stepWizard.isLastStep,
+          icon: icons.Right,
+          iconPosition: iconPosition.Right,
+          text: nextButtonText
+        }"
       ></ui-button>
     </div>
   </ng-template>

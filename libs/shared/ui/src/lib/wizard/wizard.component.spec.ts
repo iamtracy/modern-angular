@@ -46,19 +46,19 @@ describe('WizardComponent', () => {
   it('should have default next and previous buttons', () => {
     // @ts-expect-error - ui-button is valid query
     const defaultPreviousButton = spectator.query<ButtonComponent>('.default-buttons .previous')
-    expect(defaultPreviousButton?.text).toBe('Previous')
-    expect(defaultPreviousButton?.disabled).toBeTruthy()
-    expect(defaultPreviousButton?.icon).toBe(Icons.Left)
-    expect(defaultPreviousButton?.iconPosition).toBe(IconPosition.Left)
+    expect(defaultPreviousButton?.button.text).toBe('Previous')
+    expect(defaultPreviousButton?.button.disabled).toBeTruthy()
+    expect(defaultPreviousButton?.button.icon).toBe(Icons.Left)
+    expect(defaultPreviousButton?.button.iconPosition).toBe(IconPosition.Left)
     spectator.triggerEventHandler('.default-buttons .previous', 'clicked', null)
     expect(spectator.component.wizardService.handlePreviousStep).toHaveBeenCalled()
 
     // @ts-expect-error - ui-button is valid query
     const defaultNextButton = spectator.query<ButtonComponent>('.default-buttons .next')
-    expect(defaultNextButton?.text).toBe('Next')
-    expect(defaultNextButton?.disabled).toBeFalsy()
-    expect(defaultNextButton?.icon).toBe(Icons.Right)
-    expect(defaultNextButton?.iconPosition).toBe(IconPosition.Right)
+    expect(defaultNextButton?.button.text).toBe('Next')
+    expect(defaultNextButton?.button.disabled).toBeFalsy()
+    expect(defaultNextButton?.button.icon).toBe(Icons.Right)
+    expect(defaultNextButton?.button.iconPosition).toBe(IconPosition.Right)
     spectator.triggerEventHandler('.default-buttons .next', 'clicked', null)
     expect(spectator.component.wizardService.handleNextStep).toHaveBeenCalled()
   })

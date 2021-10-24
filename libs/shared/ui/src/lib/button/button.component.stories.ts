@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { ButtonComponent } from '@modern/shared/ui'
+import { Button, ButtonComponent } from '@modern/shared/ui'
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
 import { ButtonModule } from 'primeng/button'
 
@@ -16,22 +16,28 @@ export default {
   ]
 } as Meta<ButtonComponent>
 
-export const withText: Story<ButtonComponent> = () => ({
+export const withText: Story<Button> = () => ({
   props: {
-    text: 'click me'
+    button: {
+      text: 'click me'
+    }
   },
 })
 
-export const withLink: Story<ButtonComponent> = () => ({
+export const withLink: Story<Button> = () => ({
   props: {
-    linkButton: true,
-    text: 'click me'
+    button: {
+      linkButton: true,
+      text: 'click me'
+    }
   },
 })
 
-export const withDisabled: Story<ButtonComponent> = () => ({
+export const withDisabled: Story<Button> = () => ({
   props: {
-    disabled: true,
-    text: 'click me'
+    button: {
+      disabled: true,
+      text: 'click me'
+    }
   },
 })

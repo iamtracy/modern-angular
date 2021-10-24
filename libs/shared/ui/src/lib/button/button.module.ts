@@ -10,8 +10,8 @@ export interface Button {
   text: string,
   disabled?: boolean,
   linkButton?: boolean,
-  icon?: Icons,
-  iconPosition?: IconPosition,
+  icon: Icons | '',
+  iconPosition: IconPosition,
   buttonClick?: EventEmitter<any>
 }
 

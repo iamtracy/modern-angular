@@ -1,20 +1,20 @@
 import { Component } from '@angular/core'
 import { WizardStep } from '@modern/shared/ui'
 
+// <ng-template #wizardButtons let-stepWizard>
+// <div fxLayoutAlign="space-between">
+//   <ui-button (clicked)="stepWizard.handlePreviousStep()" [disabled]="stepWizard.isFirstStep" text="Prev"></ui-button>
+//   <div fxLayoutGap="1em">
+//     <ui-button *ngIf="stepWizard.currentStepIndex === 3" (clicked)="handleSave()" text="Save"></ui-button>
+//     <ui-button (clicked)="stepWizard.handleNextStep()" [disabled]="stepWizard.isLastStep" text="Next"></ui-button>
+//   </div>
+// </div>
+// </ng-template>
+
 @Component({
   selector: 'modern-step-wizard',
   template: `
-    <ui-wizard [wizardSteps]="wizardSteps">
-      <ng-template #wizardButtons let-stepWizard>
-        <div fxLayoutAlign="space-between">
-          <ui-button (clicked)="stepWizard.handlePreviousStep()" [disabled]="stepWizard.isFirstStep" text="Prev"></ui-button>
-          <div fxLayoutGap="1em">
-            <ui-button *ngIf="stepWizard.currentStepIndex === 3" (clicked)="handleSave()" text="Save"></ui-button>
-            <ui-button (clicked)="stepWizard.handleNextStep()" [disabled]="stepWizard.isLastStep" text="Next"></ui-button>
-          </div>
-        </div>
-      </ng-template>
-    </ui-wizard>
+    <ui-wizard [wizardSteps]="wizardSteps"></ui-wizard>
   `,
   styles: [`
     :host {
