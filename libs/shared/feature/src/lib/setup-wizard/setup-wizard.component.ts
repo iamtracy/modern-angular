@@ -1,5 +1,12 @@
 import { Component } from '@angular/core'
 import { WizardStep } from '@modern/shared/ui'
+import { SetupWizardBasicInfoComponent } from './screens/basic-info.component'
+import { SetupWizardService } from './setup-wizard.service'
+
+export interface SetupWizard {
+  firstName?:  string | null | undefined,
+  lastName?: string | null | undefined,
+}
 
 @Component({
   selector: 'shared-setup-wizard',
@@ -15,24 +22,14 @@ import { WizardStep } from '@modern/shared/ui'
             }"
           >
           </ui-button>
-          <div fxLayoutGap="1em">
-            <ui-button
-              *ngIf="stepWizard.currentStepIndex === 3"
-              (clicked)="handleSave()"
-              [button]="{
-                text: 'Save'
-              }"
-            >
-            </ui-button>
-            <ui-button
-              (clicked)="stepWizard.handleNextStep()"
-              [button]="{
-                disabled: stepWizard.isLastStep,
-                text: 'Next'
-              }"
-            >
-            </ui-button>
-          </div>
+          <ui-button
+            (clicked)="stepWizard.handleNextStep(); handleNext()"
+            [button]="{
+              disabled: stepWizard.isLastStep,
+              text: 'Next'
+            }"
+          >
+          </ui-button>
         </div>
       </ng-template>
     </ui-wizard>
@@ -48,13 +45,17 @@ import { WizardStep } from '@modern/shared/ui'
 })
 export class SetupWizardComponent {
   wizardSteps: WizardStep[] = [
-    { path: 'step-one', label: 'Basic Info' },
+    { component: SetupWizardBasicInfoComponent, path: 'step-one', label: 'Basic Info' },
     { path: 'step-two', label: 'Foo' },
     { path: 'step-three', label: 'Biz' },
     { path: 'step-four', label: 'Baz' },
   ]
 
-  handleSave() {
-    alert('saved!')
+  constructor(
+    public setupWizardService: SetupWizardService
+  ) {}
+
+  handleNext() {
+    this.setupWizardService.save()
   }
 }

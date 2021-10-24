@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core'
+import { ChangeDetectionStrategy, Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core'
 import { Router } from '@angular/router'
 import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
@@ -17,6 +17,7 @@ export class WizardComponent implements OnInit {
   @Input() inititalStepIndex = 0
   @Input() previousButtonText = 'Previous'
   @Input() nextButtonText = 'Next'
+  @Output() stepIndexChange = new EventEmitter<number>()
   stepWizard$!: Observable<StepWizard>
   icons = Icons
   iconPosition = IconPosition
@@ -30,9 +31,10 @@ export class WizardComponent implements OnInit {
     this.router.config = this.wizardSteps
     this.wizardService.init(this.wizardSteps, this.inititalStepIndex)
     this.stepWizard$ = this.wizardService.stepWizard$.pipe(
-      tap(({ currentStepIndex }) => (
-        this.router.navigateByUrl(this.wizardSteps[currentStepIndex]?.path)
-      ))
+      tap(async ({ currentStepIndex }) => {
+        await this.router.navigateByUrl(this.wizardSteps[currentStepIndex]?.path)
+        this.stepIndexChange.emit(currentStepIndex)
+      })
     )
   }
 

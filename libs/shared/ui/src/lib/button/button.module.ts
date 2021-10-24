@@ -12,6 +12,7 @@ export interface Button {
   linkButton?: boolean,
   icon?: Icons | '',
   iconPosition?: IconPosition,
+  type?: 'submit' | 'reset' | 'button',
   buttonClick?: EventEmitter<any>
 }
 

@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
     FlexModule,
     RouterModule.forRoot([]),
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

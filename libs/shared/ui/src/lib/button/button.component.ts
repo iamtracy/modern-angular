@@ -10,6 +10,7 @@ import { Button, ButtonEvent, IconPosition } from '@modern/shared/ui'
         [disabled]="button.disabled ?? false"
         styleClass="p-button-link"
         (onClick)="handlButtonClick($event)"
+        [type]="button.type ?? 'button'"
       ></p-button>
     </ng-container>
     <ng-template #standardButton>
@@ -20,6 +21,7 @@ import { Button, ButtonEvent, IconPosition } from '@modern/shared/ui'
         (click)="handlButtonClick($event)"
         [icon]="button.icon ?? ''"
         [iconPos]="button.iconPosition ?? 'left'"
+        [type]="button.type ?? 'button'"
       ></button>
     </ng-template>
   `,
@@ -30,6 +32,7 @@ export class ButtonComponent {
     text: '',
     disabled: false,
     linkButton: false,
+    type: 'button',
     icon: '',
     iconPosition: IconPosition.Left,
   }
