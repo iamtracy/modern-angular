@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterTestingModule } from '@angular/router/testing';
-import { WizardModule, WizardStep } from '@modern/shared/ui';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { WizardComponent } from "./wizard.component";
+import { WizardModule, WizardStep } from './wizard.module';
 
 @Component({
   selector: 'ui-one',
@@ -41,7 +41,7 @@ const routes: WizardStep[] = [
 ]
 
 export default {
-  title: 'Components/Wizzard',
+  title: 'Components/Wizard',
   component: WizardComponent,
   decorators: [
     moduleMetadata({
@@ -57,6 +57,6 @@ export default {
 export const withSteps: Story<WizardComponent> = () => ({
   props: {
     inititalStepIndex: 1,
-    wizzardSteps: routes
+    wizardSteps: routes
   },
 })

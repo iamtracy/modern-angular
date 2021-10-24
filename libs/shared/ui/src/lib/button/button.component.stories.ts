@@ -1,14 +1,17 @@
 import { CommonModule } from '@angular/common'
+import { ButtonComponent } from '@modern/shared/ui'
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
 import { ButtonModule } from 'primeng/button'
-import { ButtonComponent } from './button.component'
 
 export default {
   title: 'Components/Button',
   component: ButtonComponent,
   decorators: [
     moduleMetadata({
-      imports: [CommonModule, ButtonModule],
+      imports: [
+        CommonModule,
+        ButtonModule,
+      ],
     }),
   ]
 } as Meta<ButtonComponent>
