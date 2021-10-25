@@ -8,6 +8,7 @@ export class SetupWizardService {
   #setupWizard = new BehaviorSubject<SetupWizard>({
     firstName: null,
     lastName: null,
+    preferences: null,
     valid: false,
   })
   setupWizard$ = this.#setupWizard.asObservable()
@@ -23,7 +24,7 @@ export class SetupWizardService {
   }
 
   handleOnChange({ valid, value }: FormGroup): void {
-    this.#setupWizard.next({ valid, ...value })
+    this.#setupWizard.next({ valid, ...this.value, ...value })
   }
 
   save(): void {
